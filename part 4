@@ -1,0 +1,28 @@
+#include "mbed.h"
+
+#define BLINKING_RATE 200ms
+
+DigitalOut led1(LED1); // Green
+DigitalOut led2(LED2); // Blue
+DigitalOut led3(LED3); // Red
+
+void blink_5t(){
+    for (int i = 0; i < 5; i++){
+        led1 = 1; led2 = 1; led3 = 1;
+        ThisThread::sleep_for(BLINKING_RATE);
+
+        led1 = 0; led2 = 0; led3 = 0;
+        ThisThread::sleep_for(BLINKING_RATE);
+    }
+    while(1){
+        led1 = 1;
+        ThisThread::sleep_for(BLINKING_RATE);
+        led1 = 0;
+        ThisThread::sleep_for(BLINKING_RATE);
+    }
+}
+
+int main()
+{
+    blink_5t();
+}
